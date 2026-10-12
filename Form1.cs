@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Rehabilitation_Records_System
 {
-    public partial class Form1 : Form
+    public partial class RehabilitationForm : Form
     {
-        public Form1()
+        public RehabilitationForm()
         {
             InitializeComponent();
         }
