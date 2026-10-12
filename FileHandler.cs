@@ -55,7 +55,7 @@ namespace Rehabilitation_Records_System
 
         }
 
-        // Save animal records to the file
+        // Add animal records to the file
         public static void AppendAnimals(Animal animals)
         {
             try
@@ -63,25 +63,6 @@ namespace Rehabilitation_Records_System
                 using (StreamWriter writer = new StreamWriter(filePath, true))
                 {
                     writer.WriteLine(animals.FileFormat());
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Error saving animals");
-            }
-        }
-
-        // Save animal records to the file (overwrite existing records)
-        public static void SaveAnimals(List<Animal> animals)
-        {
-            try
-            {
-                using (StreamWriter writer = new StreamWriter(filePath, false))
-                {
-                    foreach (var animal in animals)
-                    {
-                        writer.WriteLine(animal.FileFormat());
-                    }
                 }
             }
             catch
