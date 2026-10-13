@@ -49,15 +49,19 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnViewAll = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearchID = new System.Windows.Forms.TextBox();
+            this.lblSearchID = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             this.lblControls = new System.Windows.Forms.Label();
             this.pnlInformation.SuspendLayout();
             this.pnlDGV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnlControls.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // pnlInformation
-            // 
+            //
             this.pnlInformation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlInformation.Controls.Add(this.label1);
             this.pnlInformation.Controls.Add(this.txtScore);
@@ -73,26 +77,26 @@
             this.pnlInformation.Name = "pnlInformation";
             this.pnlInformation.Size = new System.Drawing.Size(205, 357);
             this.pnlInformation.TabIndex = 0;
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(16, 289);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Enter Recovery Score:";
-            // 
+            //
             // txtScore
-            // 
+            //
             this.txtScore.Location = new System.Drawing.Point(18, 305);
             this.txtScore.Name = "txtScore";
             this.txtScore.Size = new System.Drawing.Size(117, 20);
             this.txtScore.TabIndex = 8;
             this.txtScore.Text = "Example: 0-100";
-            // 
+            //
             // lblAge
-            // 
+            //
             this.lblAge.AutoSize = true;
             this.lblAge.Location = new System.Drawing.Point(15, 222);
             this.lblAge.Name = "lblAge";
@@ -173,6 +177,9 @@
             // 
             this.pnlDGV.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlDGV.Controls.Add(this.dataGridView1);
+            this.pnlDGV.Controls.Add(this.btnSearch);
+            this.pnlDGV.Controls.Add(this.txtSearchID);
+            this.pnlDGV.Controls.Add(this.lblSearchID);
             this.pnlDGV.Location = new System.Drawing.Point(268, 57);
             this.pnlDGV.Name = "pnlDGV";
             this.pnlDGV.Size = new System.Drawing.Size(463, 188);
@@ -181,11 +188,38 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 15);
+            this.dataGridView1.Location = new System.Drawing.Point(17, 42);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(432, 152);
+            this.dataGridView1.Size = new System.Drawing.Size(432, 125);
             this.dataGridView1.TabIndex = 0;
-            // 
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            //
+            // lblSearchID
+            //
+            this.lblSearchID.AutoSize = true;
+            this.lblSearchID.Location = new System.Drawing.Point(14, 15);
+            this.lblSearchID.Name = "lblSearchID";
+            this.lblSearchID.Size = new System.Drawing.Size(85, 13);
+            this.lblSearchID.TabIndex = 1;
+            this.lblSearchID.Text = "Search Animal ID:";
+            //
+            // txtSearchID
+            //
+            this.txtSearchID.Location = new System.Drawing.Point(105, 12);
+            this.txtSearchID.Name = "txtSearchID";
+            this.txtSearchID.Size = new System.Drawing.Size(150, 20);
+            this.txtSearchID.TabIndex = 2;
+            //
+            // btnSearch
+            //
+            this.btnSearch.Location = new System.Drawing.Point(265, 10);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 24);
+            this.btnSearch.TabIndex = 3;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            //
             // lblRecords
             // 
             this.lblRecords.AutoSize = true;
@@ -204,6 +238,7 @@
             this.pnlControls.Controls.Add(this.btnUpdate);
             this.pnlControls.Controls.Add(this.btnViewAll);
             this.pnlControls.Controls.Add(this.btnAdd);
+            this.pnlControls.Controls.Add(this.btnClear);
             this.pnlControls.Location = new System.Drawing.Point(268, 264);
             this.pnlControls.Name = "pnlControls";
             this.pnlControls.Size = new System.Drawing.Size(462, 150);
@@ -233,8 +268,10 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(98, 26);
             this.btnUpdate.TabIndex = 2;
-            this.btnUpdate.Text = "Update Animal";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Enabled = false;
+            this.btnUpdate.Text = "Save Changes";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnViewAll
             // 
@@ -254,6 +291,16 @@
             this.btnAdd.Text = "Add New Animal";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            //
+            // btnClear
+            //
+            this.btnClear.Location = new System.Drawing.Point(322, 18);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(98, 26);
+            this.btnClear.TabIndex = 5;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // lblControls
             // 
@@ -315,6 +362,10 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnSummary;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox txtSearchID;
+        private System.Windows.Forms.Label lblSearchID;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 

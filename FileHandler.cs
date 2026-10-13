@@ -12,7 +12,7 @@ namespace Rehabilitation_Records_System
     public static class FileHandler
     {
         // Define the file path for storing animal records
-        private static string filePath = "animals.txt";
+        private static string filePath = System.IO.Path.Combine(Application.StartupPath, "animals.txt");
 
         // Load animal records from the file
         public static List<Animal> LoadAnimals()
@@ -68,6 +68,46 @@ namespace Rehabilitation_Records_System
             catch
             {
                 MessageBox.Show("Error saving animals");
+            }
+        }
+
+        // Replace the matching animal line while preserving every other line as written.
+        public static void UpdateAnimal(string animalID, Animal updatedAnimal)
+        {
+            string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
+            int matchingLine = -1;
+
+            for (int index = 0; index < lines.Length; index++)
+            {
+                string[] fields = lines[index].Split('|');
+                if (fields.Length == 7 && string.Equals(fields[0].Trim(), animalID, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (matchingLine >= 0)
+                    {
+                        throw new IOException("More than one record has this Animal ID. No changes were saved.");
+                    }
+                    matchingLine = index;
+                }
+            }
+
+            if (matchingLine < 0)
+            {
+                throw new FileNotFoundException("The selected animal could not be found in animals.txt.");
+            }
+
+            lines[matchingLine] = updatedAnimal.FileFormat();
+            string temporaryPath = filePath + ".tmp";
+            try
+            {
+                File.WriteAllLines(temporaryPath, lines, new UTF8Encoding(false));
+                File.Replace(temporaryPath, filePath, null);
+            }
+            finally
+            {
+                if (File.Exists(temporaryPath))
+                {
+                    File.Delete(temporaryPath);
+                }
             }
         }
     }
