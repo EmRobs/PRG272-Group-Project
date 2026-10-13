@@ -10,7 +10,7 @@ namespace Rehabilitation_Records_System
 {
     public static class ExceptionHandler
     {
-        public static void ValidateInput(string id, string name, string species, string age, string score)
+        public static void ValidateInput(string id, string name, string species, string age, string score, bool checkIdUniqueness = true)
         {
             //ID Validation
             string cleanID = id.Trim().ToUpper();
@@ -21,16 +21,16 @@ namespace Rehabilitation_Records_System
 
             //Name Validation
             string cleanName = name.Trim();
-            if (string.IsNullOrWhiteSpace(cleanName) || cleanName.Length > 30)
+            if (string.IsNullOrWhiteSpace(cleanName) || cleanName.Length > 30 || cleanName.Contains("|"))
             {
-                throw new ArgumentException("Animal name must not be empty and can only contain letters and must be less than 30 characters.");
+                throw new ArgumentException("Animal name is required, must be 30 characters or fewer, and cannot contain |.");
             }
 
             //Species Validation
-            string cleanSpecies = name.Trim();
-            if (string.IsNullOrWhiteSpace(cleanSpecies) || cleanSpecies.Length > 30)
+            string cleanSpecies = species.Trim();
+            if (string.IsNullOrWhiteSpace(cleanSpecies) || cleanSpecies.Length > 30 || cleanSpecies.Contains("|"))
             {
-                throw new ArgumentException("Animal species must not be empty and can only contain letters and must be less than 30 characters.");
+                throw new ArgumentException("Animal species is required, must be 30 characters or fewer, and cannot contain |.");
             }
 
             //Age Validation
@@ -46,12 +46,15 @@ namespace Rehabilitation_Records_System
             }
 
             //Enure ID is unique
-            List<Animal> animals = FileHandler.LoadAnimals();
-            foreach (var animal in animals)
+            if (checkIdUniqueness)
             {
-                if (animal.AnimalID == cleanID)
+                List<Animal> animals = FileHandler.LoadAnimals();
+                foreach (var animal in animals)
                 {
-                    throw new ArgumentException("Animal ID must be unique. An animal with this ID already exists.");
+                    if (string.Equals(animal.AnimalID, cleanID, StringComparison.OrdinalIgnoreCase))
+                    {
+                        throw new ArgumentException("Animal ID must be unique. An animal with this ID already exists.");
+                    }
                 }
             }
         }
