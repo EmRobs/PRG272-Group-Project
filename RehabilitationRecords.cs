@@ -84,6 +84,37 @@ namespace Rehabilitation_Records_System
             btnUpdate.Enabled = false;
         }
 
+        // Focus and select the form field identified by the validation error.
+        private void FocusInvalidField(string fieldName)
+        {
+            TextBox invalidField = null;
+
+            switch (fieldName)
+            {
+                case "id":
+                    invalidField = txtAnimalID;
+                    break;
+                case "name":
+                    invalidField = txtName;
+                    break;
+                case "species":
+                    invalidField = txtSpecies;
+                    break;
+                case "age":
+                    invalidField = txtAge;
+                    break;
+                case "score":
+                    invalidField = txtScore;
+                    break;
+            }
+
+            if (invalidField != null)
+            {
+                invalidField.Focus();
+                invalidField.SelectAll();
+            }
+        }
+
         // Event handler for the Add button click event
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -167,7 +198,12 @@ namespace Rehabilitation_Records_System
                 ClearEditMode();
                 MessageBox.Show("Animal record updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex) when (ex is ArgumentException || ex is IOException || ex is UnauthorizedAccessException || ex is FormatException)
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Unable to update animal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                FocusInvalidField(ex.ParamName);
+            }
+            catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException || ex is FormatException)
             {
                 MessageBox.Show(ex.Message, "Unable to update animal", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
