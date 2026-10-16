@@ -80,8 +80,41 @@ namespace Rehabilitation_Records_System
             txtSpecies.Clear();
             txtAge.Clear();
             txtScore.Clear();
+            txtSearchID.Clear();
+            dataGridView1.ClearSelection();
             btnAdd.Enabled = true;
             btnUpdate.Enabled = false;
+        }
+
+        // Focus and select the form field identified by the validation error.
+        private void FocusInvalidField(string fieldName)
+        {
+            TextBox invalidField = null;
+
+            switch (fieldName)
+            {
+                case "id":
+                    invalidField = txtAnimalID;
+                    break;
+                case "name":
+                    invalidField = txtName;
+                    break;
+                case "species":
+                    invalidField = txtSpecies;
+                    break;
+                case "age":
+                    invalidField = txtAge;
+                    break;
+                case "score":
+                    invalidField = txtScore;
+                    break;
+            }
+
+            if (invalidField != null)
+            {
+                invalidField.Focus();
+                invalidField.SelectAll();
+            }
         }
 
         // Event handler for the Add button click event
@@ -125,6 +158,14 @@ namespace Rehabilitation_Records_System
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string requestedID = txtSearchID.Text.Trim();
+            if (string.IsNullOrWhiteSpace(requestedID))
+            {
+                MessageBox.Show("Enter an Animal ID to search.", "Animal ID required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtSearchID.Focus();
+                txtSearchID.SelectAll();
+                return;
+            }
+
             Animal match = FileHandler.LoadAnimals().FirstOrDefault(animal =>
                 string.Equals(animal.AnimalID, requestedID, StringComparison.OrdinalIgnoreCase));
 
@@ -135,6 +176,20 @@ namespace Rehabilitation_Records_System
             }
 
             LoadAnimalForEditing(match);
+            dataGridView1.ClearSelection();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                Animal rowAnimal = row.DataBoundItem as Animal;
+                if (rowAnimal != null && string.Equals(rowAnimal.AnimalID, match.AnimalID, StringComparison.OrdinalIgnoreCase))
+                {
+                    row.Selected = true;
+                    if (row.Cells.Count > 0)
+                    {
+                        dataGridView1.CurrentCell = row.Cells[0];
+                    }
+                    break;
+                }
+            }
         }
 
         // Load the clicked grid row into the shared input fields.
@@ -165,9 +220,16 @@ namespace Rehabilitation_Records_System
                 FileHandler.UpdateAnimal(editingAnimalID, updatedAnimal);
                 RefreshAnimalGrid();
                 ClearEditMode();
-                MessageBox.Show("Animal record updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    $"{updatedAnimal.AnimalID} updated successfully.\nStatus: {updatedAnimal.Status}\nHousing unit: {updatedAnimal.HousingUnit}",
+                    "Animal updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex) when (ex is ArgumentException || ex is IOException || ex is UnauthorizedAccessException || ex is FormatException)
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Unable to update animal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                FocusInvalidField(ex.ParamName);
+            }
+            catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException || ex is FormatException)
             {
                 MessageBox.Show(ex.Message, "Unable to update animal", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
