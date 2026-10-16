@@ -9,13 +9,20 @@ using System.Drawing;
 
 namespace Rehabilitation_Records_System
 {
-    public static class FileHandler
+    public class FileHandler
     {
         // Define the file path for storing animal records
-        private static string filePath = System.IO.Path.Combine(Application.StartupPath, "animals.txt");
+        private string filePath = System.IO.Path.Combine(Application.StartupPath, "animals.txt");
+
+        // Summary text path
+        private string summaryPath = System.IO.Path.Combine(Application.StartupPath, "summary.txt");
+
+        // FileHandler method
+       
+        
 
         // Load animal records from the file
-        public static List<Animal> LoadAnimals()
+        public List<Animal> LoadAnimals()
         {
             List<Animal> animals = new List<Animal>();
 
@@ -56,7 +63,7 @@ namespace Rehabilitation_Records_System
         }
 
         // Add animal records to the file
-        public static void AppendAnimals(Animal animals)
+        public void AppendAnimals(Animal animals)
         {
             try
             {
@@ -72,7 +79,7 @@ namespace Rehabilitation_Records_System
         }
 
         // Replace the matching animal line while preserving every other line as written.
-        public static void UpdateAnimal(string animalID, Animal updatedAnimal)
+        public void UpdateAnimal(string animalID, Animal updatedAnimal)
         {
             string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
             int matchingLine = -1;
@@ -108,6 +115,65 @@ namespace Rehabilitation_Records_System
                 {
                     File.Delete(temporaryPath);
                 }
+            }
+        }
+
+        // Formatted summary text to Summary.txt
+        public void GenerateSummary()
+        {
+            List<Animal> animals = LoadAnimals();
+            FileHandler handler = new FileHandler();
+
+            int totalAniamls = animals.Count;
+
+            double averageAge = 0;
+            double averageScore = 0;
+
+            if (totalAniamls > 0)
+            {
+                averageAge = animals.Average(a => a.Age);
+                averageScore = animals.Average(a => a.RecoveryScore);
+            }
+
+            int critical = animals.Count(a => a.Status == "Critical");
+            int serious = animals.Count(a => a.Status == "Serious");
+            int Stable = animals.Count(a => a.Status == "Stable");
+            int Recovering = animals.Count(a => a.Status == "Recovering");
+            int releaseReady = animals.Count(a => a.Status == "Release-Ready");
+
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(summaryPath, false))
+                {
+                    writer.WriteLine("BAOBAB RIDGE WILDLIFE REHABILITATION CENTRE");
+                    writer.WriteLine("ANIMAL SUMMARY REPORT");
+                    writer.WriteLine("Generated: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+                    writer.WriteLine("------------------------------------------");
+
+                    if (totalAniamls == 0)
+                    {
+                        writer.WriteLine("Total animals: 0");
+                        writer.WriteLine("Average age (years): N/A");
+                        writer.WriteLine("Average recovery score: N/A");
+                    }
+                    else
+                    {
+                        writer.WriteLine($"Total animals: {totalAniamls}");
+                        writer.WriteLine("Average age (years): " + averageAge.ToString("F2"));
+                        writer.WriteLine("Average recovery score: " + averageScore.ToString("F2"));
+                    }
+                    writer.WriteLine("------------------------------------------");
+                    writer.WriteLine("Animals per status:");
+                    writer.WriteLine($"Critical: {critical}");
+                    writer.WriteLine($"Serious: {serious}");
+                    writer.WriteLine($"Stable: {Stable}");
+                    writer.WriteLine($"Recovering: {Recovering}");
+                    writer.WriteLine($"Release-Ready: {releaseReady}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to generate summary" + ex.Message);
             }
         }
     }

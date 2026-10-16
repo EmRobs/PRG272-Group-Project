@@ -15,6 +15,8 @@ namespace Rehabilitation_Records_System
     {
         private string editingAnimalID;
 
+        private FileHandler handler = new FileHandler();
+
         // Initialize the form and populate the animal grid when the application opens.
         public RehabilitationForm()
         {
@@ -39,7 +41,7 @@ namespace Rehabilitation_Records_System
         private void RefreshAnimalGrid()
         {
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = FileHandler.LoadAnimals();
+            dataGridView1.DataSource = handler.LoadAnimals();
             string[] headers = { "Animal ID", "Name", "Species", "Age", "Recovery Score", "Status", "Housing Unit" };
             string[] properties = { "AnimalID", "Name", "Species", "Age", "RecoveryScore", "Status", "HousingUnit" };
             for (int column = 0; column < properties.Length; column++)
@@ -143,7 +145,7 @@ namespace Rehabilitation_Records_System
                 Animal newAnimal = new Animal(id, name, species, age, score);
 
                 // Append the new animal record to the file using the FileHandler class
-                FileHandler.AppendAnimals(newAnimal);
+                handler.AppendAnimals(newAnimal);
 
                 // Clear the input fields after successful addition
                 MessageBox.Show($"Animal record added successfully ID: {newAnimal.AnimalID}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -166,7 +168,7 @@ namespace Rehabilitation_Records_System
                 return;
             }
 
-            Animal match = FileHandler.LoadAnimals().FirstOrDefault(animal =>
+            Animal match = handler.LoadAnimals().FirstOrDefault(animal =>
                 string.Equals(animal.AnimalID, requestedID, StringComparison.OrdinalIgnoreCase));
 
             if (match == null)
@@ -217,7 +219,7 @@ namespace Rehabilitation_Records_System
                 ExceptionHandler.ValidateInput(txtAnimalID.Text, txtName.Text, txtSpecies.Text, txtAge.Text, txtScore.Text, false);
                 Animal updatedAnimal = new Animal(txtAnimalID.Text, txtName.Text, txtSpecies.Text,
                     int.Parse(txtAge.Text.Trim()), int.Parse(txtScore.Text.Trim()));
-                FileHandler.UpdateAnimal(editingAnimalID, updatedAnimal);
+                handler.UpdateAnimal(editingAnimalID, updatedAnimal);
                 RefreshAnimalGrid();
                 ClearEditMode();
                 MessageBox.Show(
@@ -239,6 +241,12 @@ namespace Rehabilitation_Records_System
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearEditMode();
+        }
+
+        private void btnSummary_Click(object sender, EventArgs e)
+        {
+            frmSummary summary = new frmSummary();
+            summary.ShowDialog();
         }
     }
 }

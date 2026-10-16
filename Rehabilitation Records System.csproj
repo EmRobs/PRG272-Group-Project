@@ -49,6 +49,12 @@
     <Compile Include="Animal.cs" />
     <Compile Include="ExceptionHandler.cs" />
     <Compile Include="FileHandler.cs" />
+    <Compile Include="frmSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSummary.Designer.cs">
+      <DependentUpon>frmSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="RehabilitationRecords.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +63,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmSummary.resx">
+      <DependentUpon>frmSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RehabilitationRecords.resx">
       <DependentUpon>RehabilitationRecords.cs</DependentUpon>
     </EmbeddedResource>

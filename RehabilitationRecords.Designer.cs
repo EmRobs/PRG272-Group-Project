@@ -42,6 +42,9 @@
             this.lblInfo = new System.Windows.Forms.Label();
             this.pnlDGV = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearchID = new System.Windows.Forms.TextBox();
+            this.lblSearchID = new System.Windows.Forms.Label();
             this.lblRecords = new System.Windows.Forms.Label();
             this.pnlControls = new System.Windows.Forms.Panel();
             this.btnSummary = new System.Windows.Forms.Button();
@@ -49,9 +52,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnViewAll = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.txtSearchID = new System.Windows.Forms.TextBox();
-            this.lblSearchID = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
             this.lblControls = new System.Windows.Forms.Label();
             this.pnlInformation.SuspendLayout();
@@ -59,9 +59,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnlControls.SuspendLayout();
             this.SuspendLayout();
-            //
+            // 
             // pnlInformation
-            //
+            // 
             this.pnlInformation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlInformation.Controls.Add(this.label1);
             this.pnlInformation.Controls.Add(this.txtScore);
@@ -77,26 +77,26 @@
             this.pnlInformation.Name = "pnlInformation";
             this.pnlInformation.Size = new System.Drawing.Size(205, 357);
             this.pnlInformation.TabIndex = 0;
-            //
+            // 
             // label1
-            //
+            // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(16, 289);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Enter Recovery Score:";
-            //
+            // 
             // txtScore
-            //
+            // 
             this.txtScore.Location = new System.Drawing.Point(18, 305);
             this.txtScore.Name = "txtScore";
             this.txtScore.Size = new System.Drawing.Size(117, 20);
             this.txtScore.TabIndex = 8;
             this.txtScore.Text = "Example: 0-100";
-            //
+            // 
             // lblAge
-            //
+            // 
             this.lblAge.AutoSize = true;
             this.lblAge.Location = new System.Drawing.Point(15, 222);
             this.lblAge.Name = "lblAge";
@@ -193,25 +193,9 @@
             this.dataGridView1.Size = new System.Drawing.Size(432, 125);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            //
-            // lblSearchID
-            //
-            this.lblSearchID.AutoSize = true;
-            this.lblSearchID.Location = new System.Drawing.Point(14, 15);
-            this.lblSearchID.Name = "lblSearchID";
-            this.lblSearchID.Size = new System.Drawing.Size(85, 13);
-            this.lblSearchID.TabIndex = 1;
-            this.lblSearchID.Text = "Search Animal ID:";
-            //
-            // txtSearchID
-            //
-            this.txtSearchID.Location = new System.Drawing.Point(105, 12);
-            this.txtSearchID.Name = "txtSearchID";
-            this.txtSearchID.Size = new System.Drawing.Size(150, 20);
-            this.txtSearchID.TabIndex = 2;
-            //
+            // 
             // btnSearch
-            //
+            // 
             this.btnSearch.Location = new System.Drawing.Point(265, 10);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 24);
@@ -219,7 +203,23 @@
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            //
+            // 
+            // txtSearchID
+            // 
+            this.txtSearchID.Location = new System.Drawing.Point(105, 12);
+            this.txtSearchID.Name = "txtSearchID";
+            this.txtSearchID.Size = new System.Drawing.Size(150, 20);
+            this.txtSearchID.TabIndex = 2;
+            // 
+            // lblSearchID
+            // 
+            this.lblSearchID.AutoSize = true;
+            this.lblSearchID.Location = new System.Drawing.Point(14, 15);
+            this.lblSearchID.Name = "lblSearchID";
+            this.lblSearchID.Size = new System.Drawing.Size(92, 13);
+            this.lblSearchID.TabIndex = 1;
+            this.lblSearchID.Text = "Search Animal ID:";
+            // 
             // lblRecords
             // 
             this.lblRecords.AutoSize = true;
@@ -252,6 +252,7 @@
             this.btnSummary.TabIndex = 4;
             this.btnSummary.Text = "Summary";
             this.btnSummary.UseVisualStyleBackColor = true;
+            this.btnSummary.Click += new System.EventHandler(this.btnSummary_Click);
             // 
             // btnDelete
             // 
@@ -264,13 +265,13 @@
             // 
             // btnUpdate
             // 
+            this.btnUpdate.Enabled = false;
             this.btnUpdate.Location = new System.Drawing.Point(322, 62);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(98, 26);
             this.btnUpdate.TabIndex = 2;
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Enabled = false;
             this.btnUpdate.Text = "Save Changes";
+            this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnViewAll
@@ -291,9 +292,9 @@
             this.btnAdd.Text = "Add New Animal";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            //
+            // 
             // btnClear
-            //
+            // 
             this.btnClear.Location = new System.Drawing.Point(322, 18);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(98, 26);
@@ -331,6 +332,7 @@
             this.pnlInformation.ResumeLayout(false);
             this.pnlInformation.PerformLayout();
             this.pnlDGV.ResumeLayout(false);
+            this.pnlDGV.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.pnlControls.ResumeLayout(false);
             this.ResumeLayout(false);
