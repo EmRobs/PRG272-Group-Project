@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace Rehabilitation_Records_System
 {
@@ -12,6 +11,9 @@ namespace Rehabilitation_Records_System
     {
         public static void ValidateInput(string id, string name, string species, string age, string score, bool checkIdUniqueness = true)
         {
+            // FileHandler object
+            FileHandler handler = new FileHandler();
+
             //ID Validation
             string cleanID = id.Trim().ToUpper();
             if (string.IsNullOrWhiteSpace(cleanID) || !Regex.IsMatch(cleanID, @"^WR-\d{4}$")) 
@@ -48,7 +50,7 @@ namespace Rehabilitation_Records_System
             //Enure ID is unique
             if (checkIdUniqueness)
             {
-                List<Animal> animals = FileHandler.LoadAnimals();
+                List<Animal> animals = handler.LoadAnimals();
                 foreach (var animal in animals)
                 {
                     if (string.Equals(animal.AnimalID, cleanID, StringComparison.OrdinalIgnoreCase))
