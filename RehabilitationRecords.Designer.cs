@@ -289,6 +289,7 @@
             btnDelete.TabIndex = 3;
             btnDelete.Text = "Delete Animal";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click_1;
             // 
             // btnUpdate
             // 

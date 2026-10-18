@@ -119,7 +119,7 @@ namespace Rehabilitation_Records_System
         }
 
         // Deletes an animal from the files and keeps the remaining animals
-        public static void DeleteAnimal(string animalID)
+        public void DeleteAnimal(string animalID)
         {
             string[] lines = File.ReadAllLines(filePath);
             List<string> leftoverAnimals = new List<string>();
