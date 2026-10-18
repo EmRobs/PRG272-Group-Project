@@ -248,5 +248,44 @@ namespace Rehabilitation_Records_System
             frmSummary summary = new frmSummary();
             summary.ShowDialog();
         }
+
+        // Deletes the selected animal
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+        {
+            MessageBox.Show("Please select an animal", "No animal was selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+            Animal SelectedAnimal = dataGridView1.SelectedRows[0].DataBoundItem as Animal;
+
+        if (SelectedAnimal == null)
+        {
+            return;
+        }
+
+        if (MessageBox.Show($"Delete {SelectedAnimal.AnimalID} ({SelectedAnimal.Name})?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+        {    
+            return;
+        }
+
+        try
+        {
+            FileHandler.DeleteAnimal(SelectedAnimal.AnimalID);
+            RefreshAnimalGrid();
+
+            if (editingAnimalID == SelectedAnimal.AnimalID)
+            {
+                ClearEditMode();
+            }
+
+            MessageBox.Show("Animal was deleted","Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+            catch (Exception ex) when (ex is Exception || ex is UnauthorizedAccessException)
+            {
+                MessageBox.Show(ex.Message, "Unable to delete selected animal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
