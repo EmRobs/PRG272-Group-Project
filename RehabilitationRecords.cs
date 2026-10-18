@@ -335,5 +335,44 @@ namespace Rehabilitation_Records_System
         private void dgvAnimals_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
+
+        // Deletes the selected animal
+        private void btnDelete_Click_1(object sender, EventArgs e)
+        {
+            if (dgvAnimals.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select an animal", "No animal was selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Animal SelectedAnimal = dgvAnimals.SelectedRows[0].DataBoundItem as Animal;
+
+            if (SelectedAnimal == null)
+            {
+                return;
+            }
+
+            if (MessageBox.Show($"Delete {SelectedAnimal.AnimalID} ({SelectedAnimal.Name})?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+                handler.DeleteAnimal(SelectedAnimal.AnimalID);
+                RefreshAnimalGrid();
+
+                if (editingAnimalID == SelectedAnimal.AnimalID)
+                {
+                    ClearEditMode();
+                }
+
+                MessageBox.Show("Animal was deleted", "Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex) when (ex is Exception || ex is UnauthorizedAccessException)
+            {
+                MessageBox.Show(ex.Message, "Unable to delete selected animal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
