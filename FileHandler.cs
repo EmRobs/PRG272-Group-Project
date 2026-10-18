@@ -118,6 +118,53 @@ namespace Rehabilitation_Records_System
             }
         }
 
+        // Deletes an animal from the files and keeps the remaining animals
+        public static void DeleteAnimal(string animalID)
+        {
+            string[] lines = File.ReadAllLines(filePath);
+            List<string> leftoverAnimals = new List<string>();
+            int anl = 0;
+
+            foreach (string line in lines)
+            {
+                string[] fields = line.Split('|');
+
+                if (fields.Length == 7 && fields[0].Trim().Equals(animalID, StringComparison.OrdinalIgnoreCase))
+                {
+                    anl++;
+                }
+            else
+            {
+            leftoverAnimals.Add(line);
+            }
+        }
+
+        if (anl == 0)
+        {
+            throw new FileNotFoundException("The animal selected could not be found, please try again");
+        }
+
+        if (anl > 1)
+        {
+            throw new IOException("Multiple animal ID's were found, could not delete");
+        }
+
+        string temporaryPath = filePath + ".tmp";
+
+        try
+        {
+            File.WriteAllLines(temporaryPath, leftoverAnimals, new UTF8Encoding(false));
+            File.Replace(temporaryPath, filePath, null);
+        }
+        finally
+        {
+            if (File.Exists (temporaryPath))
+            {
+            File.Delete(temporaryPath);
+            }
+        }    
+    }
+
         // Formatted summary text to Summary.txt
         public void GenerateSummary()
         {
