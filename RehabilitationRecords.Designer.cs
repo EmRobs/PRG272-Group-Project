@@ -28,315 +28,349 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlInformation = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtScore = new System.Windows.Forms.TextBox();
-            this.lblAge = new System.Windows.Forms.Label();
-            this.txtAge = new System.Windows.Forms.TextBox();
-            this.txtSpecies = new System.Windows.Forms.TextBox();
-            this.lblSpecies = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.lblAnimalID = new System.Windows.Forms.Label();
-            this.txtAnimalID = new System.Windows.Forms.TextBox();
-            this.lblInfo = new System.Windows.Forms.Label();
-            this.pnlDGV = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.txtSearchID = new System.Windows.Forms.TextBox();
-            this.lblSearchID = new System.Windows.Forms.Label();
-            this.lblRecords = new System.Windows.Forms.Label();
-            this.pnlControls = new System.Windows.Forms.Panel();
-            this.btnSummary = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnViewAll = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.lblControls = new System.Windows.Forms.Label();
-            this.pnlInformation.SuspendLayout();
-            this.pnlDGV.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.pnlControls.SuspendLayout();
-            this.SuspendLayout();
+            pnlInformation = new System.Windows.Forms.Panel();
+            label1 = new System.Windows.Forms.Label();
+            txtScore = new System.Windows.Forms.TextBox();
+            lblAge = new System.Windows.Forms.Label();
+            txtAge = new System.Windows.Forms.TextBox();
+            txtSpecies = new System.Windows.Forms.TextBox();
+            lblSpecies = new System.Windows.Forms.Label();
+            lblName = new System.Windows.Forms.Label();
+            txtName = new System.Windows.Forms.TextBox();
+            lblAnimalID = new System.Windows.Forms.Label();
+            txtAnimalID = new System.Windows.Forms.TextBox();
+            lblInfo = new System.Windows.Forms.Label();
+            pnlDGV = new System.Windows.Forms.Panel();
+            dgvAnimals = new System.Windows.Forms.DataGridView();
+            btnSearch = new System.Windows.Forms.Button();
+            txtSearchID = new System.Windows.Forms.TextBox();
+            lblSearchID = new System.Windows.Forms.Label();
+            lblRecords = new System.Windows.Forms.Label();
+            pnlControls = new System.Windows.Forms.Panel();
+            btnSummary = new System.Windows.Forms.Button();
+            btnDelete = new System.Windows.Forms.Button();
+            btnUpdate = new System.Windows.Forms.Button();
+            btnViewAll = new System.Windows.Forms.Button();
+            btnAdd = new System.Windows.Forms.Button();
+            btnClear = new System.Windows.Forms.Button();
+            lblControls = new System.Windows.Forms.Label();
+            pnlInformation.SuspendLayout();
+            pnlDGV.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvAnimals).BeginInit();
+            pnlControls.SuspendLayout();
+            SuspendLayout();
             // 
             // pnlInformation
             // 
-            this.pnlInformation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlInformation.Controls.Add(this.label1);
-            this.pnlInformation.Controls.Add(this.txtScore);
-            this.pnlInformation.Controls.Add(this.lblAge);
-            this.pnlInformation.Controls.Add(this.txtAge);
-            this.pnlInformation.Controls.Add(this.txtSpecies);
-            this.pnlInformation.Controls.Add(this.lblSpecies);
-            this.pnlInformation.Controls.Add(this.lblName);
-            this.pnlInformation.Controls.Add(this.txtName);
-            this.pnlInformation.Controls.Add(this.lblAnimalID);
-            this.pnlInformation.Controls.Add(this.txtAnimalID);
-            this.pnlInformation.Location = new System.Drawing.Point(31, 57);
-            this.pnlInformation.Name = "pnlInformation";
-            this.pnlInformation.Size = new System.Drawing.Size(205, 357);
-            this.pnlInformation.TabIndex = 0;
+            pnlInformation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            pnlInformation.Controls.Add(label1);
+            pnlInformation.Controls.Add(txtScore);
+            pnlInformation.Controls.Add(lblAge);
+            pnlInformation.Controls.Add(txtAge);
+            pnlInformation.Controls.Add(txtSpecies);
+            pnlInformation.Controls.Add(lblSpecies);
+            pnlInformation.Controls.Add(lblName);
+            pnlInformation.Controls.Add(txtName);
+            pnlInformation.Controls.Add(lblAnimalID);
+            pnlInformation.Controls.Add(txtAnimalID);
+            pnlInformation.Location = new System.Drawing.Point(36, 66);
+            pnlInformation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            pnlInformation.Name = "pnlInformation";
+            pnlInformation.Size = new System.Drawing.Size(238, 411);
+            pnlInformation.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 289);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Enter Recovery Score:";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(19, 333);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(120, 15);
+            label1.TabIndex = 9;
+            label1.Text = "Enter Recovery Score:";
             // 
             // txtScore
             // 
-            this.txtScore.Location = new System.Drawing.Point(18, 305);
-            this.txtScore.Name = "txtScore";
-            this.txtScore.Size = new System.Drawing.Size(117, 20);
-            this.txtScore.TabIndex = 8;
-            this.txtScore.Text = "Example: 0-100";
+            txtScore.Location = new System.Drawing.Point(21, 352);
+            txtScore.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtScore.Name = "txtScore";
+            txtScore.Size = new System.Drawing.Size(136, 23);
+            txtScore.TabIndex = 8;
+            txtScore.Text = "Example: 0-100";
             // 
             // lblAge
             // 
-            this.lblAge.AutoSize = true;
-            this.lblAge.Location = new System.Drawing.Point(15, 222);
-            this.lblAge.Name = "lblAge";
-            this.lblAge.Size = new System.Drawing.Size(99, 13);
-            this.lblAge.TabIndex = 7;
-            this.lblAge.Text = "Enter Age In Years:";
+            lblAge.AutoSize = true;
+            lblAge.Location = new System.Drawing.Point(18, 256);
+            lblAge.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblAge.Name = "lblAge";
+            lblAge.Size = new System.Drawing.Size(104, 15);
+            lblAge.TabIndex = 7;
+            lblAge.Text = "Enter Age In Years:";
             // 
             // txtAge
             // 
-            this.txtAge.Location = new System.Drawing.Point(18, 238);
-            this.txtAge.Name = "txtAge";
-            this.txtAge.Size = new System.Drawing.Size(117, 20);
-            this.txtAge.TabIndex = 6;
-            this.txtAge.Text = "Example: 2";
+            txtAge.Location = new System.Drawing.Point(21, 275);
+            txtAge.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtAge.Name = "txtAge";
+            txtAge.Size = new System.Drawing.Size(136, 23);
+            txtAge.TabIndex = 6;
+            txtAge.Text = "Example: 2";
             // 
             // txtSpecies
             // 
-            this.txtSpecies.Location = new System.Drawing.Point(17, 174);
-            this.txtSpecies.Name = "txtSpecies";
-            this.txtSpecies.Size = new System.Drawing.Size(117, 20);
-            this.txtSpecies.TabIndex = 5;
-            this.txtSpecies.Text = "Example: Dog";
+            txtSpecies.Location = new System.Drawing.Point(20, 201);
+            txtSpecies.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtSpecies.Name = "txtSpecies";
+            txtSpecies.Size = new System.Drawing.Size(136, 23);
+            txtSpecies.TabIndex = 5;
+            txtSpecies.Text = "Example: Dog";
             // 
             // lblSpecies
             // 
-            this.lblSpecies.AutoSize = true;
-            this.lblSpecies.Location = new System.Drawing.Point(15, 158);
-            this.lblSpecies.Name = "lblSpecies";
-            this.lblSpecies.Size = new System.Drawing.Size(76, 13);
-            this.lblSpecies.TabIndex = 4;
-            this.lblSpecies.Text = "Enter Species:";
+            lblSpecies.AutoSize = true;
+            lblSpecies.Location = new System.Drawing.Point(18, 182);
+            lblSpecies.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblSpecies.Name = "lblSpecies";
+            lblSpecies.Size = new System.Drawing.Size(79, 15);
+            lblSpecies.TabIndex = 4;
+            lblSpecies.Text = "Enter Species:";
             // 
             // lblName
             // 
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(15, 93);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(66, 13);
-            this.lblName.TabIndex = 3;
-            this.lblName.Text = "Enter Name:";
+            lblName.AutoSize = true;
+            lblName.Location = new System.Drawing.Point(18, 107);
+            lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblName.Name = "lblName";
+            lblName.Size = new System.Drawing.Size(72, 15);
+            lblName.TabIndex = 3;
+            lblName.Text = "Enter Name:";
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(17, 109);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(117, 20);
-            this.txtName.TabIndex = 2;
-            this.txtName.Text = "Example: Fluffy";
+            txtName.Location = new System.Drawing.Point(20, 126);
+            txtName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtName.Name = "txtName";
+            txtName.Size = new System.Drawing.Size(136, 23);
+            txtName.TabIndex = 2;
+            txtName.Text = "Example: Fluffy";
             // 
             // lblAnimalID
             // 
-            this.lblAnimalID.AutoSize = true;
-            this.lblAnimalID.Location = new System.Drawing.Point(16, 30);
-            this.lblAnimalID.Name = "lblAnimalID";
-            this.lblAnimalID.Size = new System.Drawing.Size(83, 13);
-            this.lblAnimalID.TabIndex = 1;
-            this.lblAnimalID.Text = "Enter Animal ID:";
+            lblAnimalID.AutoSize = true;
+            lblAnimalID.Location = new System.Drawing.Point(19, 35);
+            lblAnimalID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblAnimalID.Name = "lblAnimalID";
+            lblAnimalID.Size = new System.Drawing.Size(92, 15);
+            lblAnimalID.TabIndex = 1;
+            lblAnimalID.Text = "Enter Animal ID:";
             // 
             // txtAnimalID
             // 
-            this.txtAnimalID.Location = new System.Drawing.Point(16, 46);
-            this.txtAnimalID.Name = "txtAnimalID";
-            this.txtAnimalID.Size = new System.Drawing.Size(117, 20);
-            this.txtAnimalID.TabIndex = 0;
-            this.txtAnimalID.Text = "Example: WR-0000";
+            txtAnimalID.Location = new System.Drawing.Point(19, 53);
+            txtAnimalID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtAnimalID.Name = "txtAnimalID";
+            txtAnimalID.Size = new System.Drawing.Size(136, 23);
+            txtAnimalID.TabIndex = 0;
+            txtAnimalID.Text = "Example: WR-0000";
             // 
             // lblInfo
             // 
-            this.lblInfo.AutoSize = true;
-            this.lblInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfo.Location = new System.Drawing.Point(83, 46);
-            this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(93, 18);
-            this.lblInfo.TabIndex = 1;
-            this.lblInfo.Text = "Information";
+            lblInfo.AutoSize = true;
+            lblInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            lblInfo.Location = new System.Drawing.Point(97, 53);
+            lblInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblInfo.Name = "lblInfo";
+            lblInfo.Size = new System.Drawing.Size(93, 18);
+            lblInfo.TabIndex = 1;
+            lblInfo.Text = "Information";
             // 
             // pnlDGV
             // 
-            this.pnlDGV.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlDGV.Controls.Add(this.dataGridView1);
-            this.pnlDGV.Controls.Add(this.btnSearch);
-            this.pnlDGV.Controls.Add(this.txtSearchID);
-            this.pnlDGV.Controls.Add(this.lblSearchID);
-            this.pnlDGV.Location = new System.Drawing.Point(268, 57);
-            this.pnlDGV.Name = "pnlDGV";
-            this.pnlDGV.Size = new System.Drawing.Size(463, 188);
-            this.pnlDGV.TabIndex = 2;
+            pnlDGV.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            pnlDGV.Controls.Add(dgvAnimals);
+            pnlDGV.Controls.Add(btnSearch);
+            pnlDGV.Controls.Add(txtSearchID);
+            pnlDGV.Controls.Add(lblSearchID);
+            pnlDGV.Location = new System.Drawing.Point(313, 66);
+            pnlDGV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            pnlDGV.Name = "pnlDGV";
+            pnlDGV.Size = new System.Drawing.Size(540, 216);
+            pnlDGV.TabIndex = 2;
             // 
-            // dataGridView1
+            // dgvAnimals
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 42);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(432, 125);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            dgvAnimals.AllowUserToAddRows = false;
+            dgvAnimals.AllowUserToDeleteRows = false;
+            dgvAnimals.AllowUserToOrderColumns = true;
+            dgvAnimals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvAnimals.Location = new System.Drawing.Point(20, 48);
+            dgvAnimals.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            dgvAnimals.Name = "dgvAnimals";
+            dgvAnimals.ReadOnly = true;
+            dgvAnimals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            dgvAnimals.Size = new System.Drawing.Size(504, 144);
+            dgvAnimals.TabIndex = 0;
+            dgvAnimals.CellClick += dataGridView1_CellClick;
+            dgvAnimals.CellContentClick += dgvAnimals_CellContentClick;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(265, 10);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 24);
-            this.btnSearch.TabIndex = 3;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            btnSearch.Location = new System.Drawing.Point(309, 12);
+            btnSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new System.Drawing.Size(88, 28);
+            btnSearch.TabIndex = 3;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // txtSearchID
             // 
-            this.txtSearchID.Location = new System.Drawing.Point(105, 12);
-            this.txtSearchID.Name = "txtSearchID";
-            this.txtSearchID.Size = new System.Drawing.Size(150, 20);
-            this.txtSearchID.TabIndex = 2;
+            txtSearchID.Location = new System.Drawing.Point(122, 14);
+            txtSearchID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtSearchID.Name = "txtSearchID";
+            txtSearchID.Size = new System.Drawing.Size(174, 23);
+            txtSearchID.TabIndex = 2;
             // 
             // lblSearchID
             // 
-            this.lblSearchID.AutoSize = true;
-            this.lblSearchID.Location = new System.Drawing.Point(14, 15);
-            this.lblSearchID.Name = "lblSearchID";
-            this.lblSearchID.Size = new System.Drawing.Size(92, 13);
-            this.lblSearchID.TabIndex = 1;
-            this.lblSearchID.Text = "Search Animal ID:";
+            lblSearchID.AutoSize = true;
+            lblSearchID.Location = new System.Drawing.Point(16, 17);
+            lblSearchID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblSearchID.Name = "lblSearchID";
+            lblSearchID.Size = new System.Drawing.Size(100, 15);
+            lblSearchID.TabIndex = 1;
+            lblSearchID.Text = "Search Animal ID:";
             // 
             // lblRecords
             // 
-            this.lblRecords.AutoSize = true;
-            this.lblRecords.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecords.Location = new System.Drawing.Point(475, 46);
-            this.lblRecords.Name = "lblRecords";
-            this.lblRecords.Size = new System.Drawing.Size(72, 18);
-            this.lblRecords.TabIndex = 3;
-            this.lblRecords.Text = "Records";
+            lblRecords.AutoSize = true;
+            lblRecords.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            lblRecords.Location = new System.Drawing.Point(554, 53);
+            lblRecords.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblRecords.Name = "lblRecords";
+            lblRecords.Size = new System.Drawing.Size(72, 18);
+            lblRecords.TabIndex = 3;
+            lblRecords.Text = "Records";
             // 
             // pnlControls
             // 
-            this.pnlControls.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlControls.Controls.Add(this.btnSummary);
-            this.pnlControls.Controls.Add(this.btnDelete);
-            this.pnlControls.Controls.Add(this.btnUpdate);
-            this.pnlControls.Controls.Add(this.btnViewAll);
-            this.pnlControls.Controls.Add(this.btnAdd);
-            this.pnlControls.Controls.Add(this.btnClear);
-            this.pnlControls.Location = new System.Drawing.Point(268, 264);
-            this.pnlControls.Name = "pnlControls";
-            this.pnlControls.Size = new System.Drawing.Size(462, 150);
-            this.pnlControls.TabIndex = 4;
+            pnlControls.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            pnlControls.Controls.Add(btnSummary);
+            pnlControls.Controls.Add(btnDelete);
+            pnlControls.Controls.Add(btnUpdate);
+            pnlControls.Controls.Add(btnViewAll);
+            pnlControls.Controls.Add(btnAdd);
+            pnlControls.Controls.Add(btnClear);
+            pnlControls.Location = new System.Drawing.Point(313, 305);
+            pnlControls.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            pnlControls.Name = "pnlControls";
+            pnlControls.Size = new System.Drawing.Size(538, 172);
+            pnlControls.TabIndex = 4;
             // 
             // btnSummary
             // 
-            this.btnSummary.Location = new System.Drawing.Point(187, 102);
-            this.btnSummary.Name = "btnSummary";
-            this.btnSummary.Size = new System.Drawing.Size(98, 26);
-            this.btnSummary.TabIndex = 4;
-            this.btnSummary.Text = "Summary";
-            this.btnSummary.UseVisualStyleBackColor = true;
-            this.btnSummary.Click += new System.EventHandler(this.btnSummary_Click);
+            btnSummary.Location = new System.Drawing.Point(218, 118);
+            btnSummary.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnSummary.Name = "btnSummary";
+            btnSummary.Size = new System.Drawing.Size(114, 30);
+            btnSummary.TabIndex = 4;
+            btnSummary.Text = "Summary";
+            btnSummary.UseVisualStyleBackColor = true;
+            btnSummary.Click += btnSummary_Click;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(187, 18);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(98, 26);
-            this.btnDelete.TabIndex = 3;
-            this.btnDelete.Text = "Delete Animal";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Location = new System.Drawing.Point(218, 21);
+            btnDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new System.Drawing.Size(114, 30);
+            btnDelete.TabIndex = 3;
+            btnDelete.Text = "Delete Animal";
+            btnDelete.UseVisualStyleBackColor = true;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Enabled = false;
-            this.btnUpdate.Location = new System.Drawing.Point(322, 62);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(98, 26);
-            this.btnUpdate.TabIndex = 2;
-            this.btnUpdate.Text = "Save Changes";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            btnUpdate.Enabled = false;
+            btnUpdate.Location = new System.Drawing.Point(376, 72);
+            btnUpdate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new System.Drawing.Size(114, 30);
+            btnUpdate.TabIndex = 2;
+            btnUpdate.Text = "Save Changes";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnViewAll
             // 
-            this.btnViewAll.Location = new System.Drawing.Point(187, 62);
-            this.btnViewAll.Name = "btnViewAll";
-            this.btnViewAll.Size = new System.Drawing.Size(98, 26);
-            this.btnViewAll.TabIndex = 1;
-            this.btnViewAll.Text = "View All Animals";
-            this.btnViewAll.UseVisualStyleBackColor = true;
+            btnViewAll.Location = new System.Drawing.Point(218, 72);
+            btnViewAll.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnViewAll.Name = "btnViewAll";
+            btnViewAll.Size = new System.Drawing.Size(114, 30);
+            btnViewAll.TabIndex = 1;
+            btnViewAll.Text = "View All Animals";
+            btnViewAll.UseVisualStyleBackColor = true;
+            btnViewAll.Click += btnViewAll_Click;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(53, 62);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(98, 26);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "Add New Animal";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            btnAdd.Location = new System.Drawing.Point(62, 72);
+            btnAdd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new System.Drawing.Size(114, 30);
+            btnAdd.TabIndex = 0;
+            btnAdd.Text = "Add New Animal";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(322, 18);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(98, 26);
-            this.btnClear.TabIndex = 5;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            btnClear.Location = new System.Drawing.Point(376, 21);
+            btnClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new System.Drawing.Size(114, 30);
+            btnClear.TabIndex = 5;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // lblControls
             // 
-            this.lblControls.AutoSize = true;
-            this.lblControls.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblControls.Location = new System.Drawing.Point(470, 254);
-            this.lblControls.Name = "lblControls";
-            this.lblControls.Size = new System.Drawing.Size(73, 18);
-            this.lblControls.TabIndex = 5;
-            this.lblControls.Text = "Controls";
+            lblControls.AutoSize = true;
+            lblControls.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            lblControls.Location = new System.Drawing.Point(548, 293);
+            lblControls.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblControls.Name = "lblControls";
+            lblControls.Size = new System.Drawing.Size(73, 18);
+            lblControls.TabIndex = 5;
+            lblControls.Text = "Controls";
             // 
             // RehabilitationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(760, 454);
-            this.Controls.Add(this.lblControls);
-            this.Controls.Add(this.pnlControls);
-            this.Controls.Add(this.lblRecords);
-            this.Controls.Add(this.pnlDGV);
-            this.Controls.Add(this.lblInfo);
-            this.Controls.Add(this.pnlInformation);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "RehabilitationForm";
-            this.Text = "Rehabilitation Records System";
-            this.pnlInformation.ResumeLayout(false);
-            this.pnlInformation.PerformLayout();
-            this.pnlDGV.ResumeLayout(false);
-            this.pnlDGV.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.pnlControls.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.SystemColors.Window;
+            ClientSize = new System.Drawing.Size(887, 524);
+            Controls.Add(lblControls);
+            Controls.Add(pnlControls);
+            Controls.Add(lblRecords);
+            Controls.Add(pnlDGV);
+            Controls.Add(lblInfo);
+            Controls.Add(pnlInformation);
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "RehabilitationForm";
+            Text = "Rehabilitation Records System";
+            pnlInformation.ResumeLayout(false);
+            pnlInformation.PerformLayout();
+            pnlDGV.ResumeLayout(false);
+            pnlDGV.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvAnimals).EndInit();
+            pnlControls.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -356,7 +390,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlDGV;
         private System.Windows.Forms.Label lblRecords;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvAnimals;
         private System.Windows.Forms.Panel pnlControls;
         private System.Windows.Forms.Label lblControls;
         private System.Windows.Forms.Button btnUpdate;

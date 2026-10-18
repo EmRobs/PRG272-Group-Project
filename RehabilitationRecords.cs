@@ -22,33 +22,34 @@ namespace Rehabilitation_Records_System
         {
             InitializeComponent();
             ConfigureAnimalGrid();
-            RefreshAnimalGrid();
+            //RefreshAnimalGrid();
+            LoadMyViewAllAnimals(true);
         }
 
         // Configure the grid to select complete records and prevent direct cell edits.
         private void ConfigureAnimalGrid()
         {
-            dataGridView1.ReadOnly = true;
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.MultiSelect = false;
-            dataGridView1.AutoGenerateColumns = true;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvAnimals.ReadOnly = true;
+            dgvAnimals.AllowUserToAddRows = false;
+            dgvAnimals.AllowUserToDeleteRows = false;
+            dgvAnimals.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvAnimals.MultiSelect = false;
+            dgvAnimals.AutoGenerateColumns = true;
+            dgvAnimals.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         // Reload records from the text file and display them in the grid.
         private void RefreshAnimalGrid()
         {
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = handler.LoadAnimals();
+            dgvAnimals.DataSource = null;
+            dgvAnimals.DataSource = handler.LoadAnimals();
             string[] headers = { "Animal ID", "Name", "Species", "Age", "Recovery Score", "Status", "Housing Unit" };
             string[] properties = { "AnimalID", "Name", "Species", "Age", "RecoveryScore", "Status", "HousingUnit" };
             for (int column = 0; column < properties.Length; column++)
             {
-                if (dataGridView1.Columns[properties[column]] != null)
+                if (dgvAnimals.Columns[properties[column]] != null)
                 {
-                    dataGridView1.Columns[properties[column]].HeaderText = headers[column];
+                    dgvAnimals.Columns[properties[column]].HeaderText = headers[column];
                 }
             }
         }
@@ -83,7 +84,7 @@ namespace Rehabilitation_Records_System
             txtAge.Clear();
             txtScore.Clear();
             txtSearchID.Clear();
-            dataGridView1.ClearSelection();
+            dgvAnimals.ClearSelection();
             btnAdd.Enabled = true;
             btnUpdate.Enabled = false;
         }
@@ -178,8 +179,8 @@ namespace Rehabilitation_Records_System
             }
 
             LoadAnimalForEditing(match);
-            dataGridView1.ClearSelection();
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            dgvAnimals.ClearSelection();
+            foreach (DataGridViewRow row in dgvAnimals.Rows)
             {
                 Animal rowAnimal = row.DataBoundItem as Animal;
                 if (rowAnimal != null && string.Equals(rowAnimal.AnimalID, match.AnimalID, StringComparison.OrdinalIgnoreCase))
@@ -187,7 +188,7 @@ namespace Rehabilitation_Records_System
                     row.Selected = true;
                     if (row.Cells.Count > 0)
                     {
-                        dataGridView1.CurrentCell = row.Cells[0];
+                        dgvAnimals.CurrentCell = row.Cells[0];
                     }
                     break;
                 }
@@ -197,12 +198,12 @@ namespace Rehabilitation_Records_System
         // Load the clicked grid row into the shared input fields.
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || dataGridView1.Rows[e.RowIndex].DataBoundItem == null)
+            if (e.RowIndex < 0 || dgvAnimals.Rows[e.RowIndex].DataBoundItem == null)
             {
                 return;
             }
 
-            LoadAnimalForEditing(dataGridView1.Rows[e.RowIndex].DataBoundItem as Animal);
+            LoadAnimalForEditing(dgvAnimals.Rows[e.RowIndex].DataBoundItem as Animal);
         }
 
         // Validate the edited fields, recalculate classification, and save only this record.
@@ -247,6 +248,92 @@ namespace Rehabilitation_Records_System
         {
             frmSummary summary = new frmSummary();
             summary.ShowDialog();
+        }
+
+
+
+        //LOHAN'S VIEW ALL ANIMALS SECTION
+
+        //Safely reads the text file and formats the grid
+        private void LoadMyViewAllAnimals(bool isStartup = false)
+        {
+            List<Animal> validAnimals = new List<Animal>();
+            string filePath = System.IO.Path.Combine(Application.StartupPath, "animals.txt");
+            int skippedLines = 0;
+
+            try
+            {
+                if (!System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Create(filePath).Close();
+                }
+
+                string[] lines = System.IO.File.ReadAllLines(filePath);
+                foreach (string line in lines)
+                {
+                    if (string.IsNullOrWhiteSpace(line)) continue;
+
+                    string[] parts = line.Split('|');
+                    if (parts.Length == 7)
+                    {
+                        string animalID = parts[0].Trim();
+                        string name = parts[1].Trim();
+                        string species = parts[2].Trim();
+
+                        // Safe parsing prevents crashes
+                        bool isValidAge = int.TryParse(parts[3].Trim(), out int age);
+                        bool isValidScore = int.TryParse(parts[4].Trim(), out int recoveryScore);
+
+                        if (isValidAge && isValidScore)
+                        {
+                            validAnimals.Add(new Animal(animalID, name, species, age, recoveryScore));
+                        }
+                        else { skippedLines++; }
+                    }
+                    else { skippedLines++; }
+                }
+
+                dgvAnimals.DataSource = null;
+                dgvAnimals.DataSource = validAnimals;
+
+                string[] headers = { "Animal ID", "Name", "Species", "Age", "Recovery Score", "Status", "Housing Unit" };
+                string[] properties = { "AnimalID", "Name", "Species", "Age", "RecoveryScore", "Status", "HousingUnit" };
+                for (int column = 0; column < properties.Length; column++)
+                {
+                    if (dgvAnimals.Columns[properties[column]] != null)
+                    {
+                        dgvAnimals.Columns[properties[column]].HeaderText = headers[column];
+                    }
+                }
+
+                // Tell the user ONCE on startup how many lines were skipped
+                if (isStartup && skippedLines > 0)
+                {
+                    MessageBox.Show($"{skippedLines} malformed record(s) were skipped and hidden from the grid.", "Data Load Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error reading the file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnViewAll_Click(object sender, EventArgs e)
+        {
+            // 1. Clear the text boxes and search bar on the left
+            ClearEditMode();
+
+            // 2. Reload the text file and refresh the DataGridView on the right
+            LoadMyViewAllAnimals(false);
+        }
+
+        // EMPTY PLACEHOLDERS TO PREVENT DESIGNER ERRORS
+        private void RehabilitationRecords_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void dgvAnimals_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
         }
     }
 }
