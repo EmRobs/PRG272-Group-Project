@@ -1,0 +1,8 @@
+﻿WR-0001 | Kito | Elephant | 12 | 15 | Critical | Intensive Care Unit
+WR-0002 | Nala | Lion | 8 | 28 | Serious | High-Dependency Ward
+WR-0003 | Zuri | Zebra | 5 | 45 | Stable | Recovery Ward
+WR-0004 | Tamu | Giraffe | 7 | 67 | Recovering | Outdoor Enclosure
+WR-0005 | Paka | Leopard | 6 | 88 | Release-Ready | Pre-Release Camp
+WR-0006 | Mosi | Rhino | 20 | 10 | Critical | Intensive Care Unit
+WR-0007 | Asha | Cheetah | 4 | 35 | Serious | High-Dependency Ward
+WR-0008 | Kovu | Hyena | 3 | 55 | Stable | Recovery Ward
