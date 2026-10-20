@@ -205,17 +205,17 @@ namespace Rehabilitation_Records_System
                     }
                     else
                     {
-                        writer.WriteLine($"Total animals: {totalAniamls}");
-                        writer.WriteLine("Average age (years): " + averageAge.ToString("F2"));
-                        writer.WriteLine("Average recovery score: " + averageScore.ToString("F2"));
+                        writer.WriteLine($"{"Total animals:",-30}{totalAniamls}");
+                        writer.WriteLine($"{"Average age (years):", -30}{averageAge:F2}");
+                        writer.WriteLine($"{"Average recovery score:",-30}{averageScore:F2}");
                     }
                     writer.WriteLine("------------------------------------------");
                     writer.WriteLine("Animals per status:");
-                    writer.WriteLine($"Critical: {critical}");
-                    writer.WriteLine($"Serious: {serious}");
-                    writer.WriteLine($"Stable: {Stable}");
-                    writer.WriteLine($"Recovering: {Recovering}");
-                    writer.WriteLine($"Release-Ready: {releaseReady}");
+                    writer.WriteLine($"{"Critical:",-30}{critical}");
+                    writer.WriteLine($"{"Serious:",-30}{serious}");
+                    writer.WriteLine($"{"Stable:",-30}{Stable}");
+                    writer.WriteLine($"{"Recovering:",-30}{Recovering}");
+                    writer.WriteLine($"{"Release-Ready:",-30}{releaseReady}");
                 }
             }
             catch (Exception ex)
