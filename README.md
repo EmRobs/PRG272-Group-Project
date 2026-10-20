@@ -1,6 +1,7 @@
 # Baobab Ridge Wildlife Rehabilitation Records System 
 ## Group Members:
 | Name | Student Number |
+|------|----------------|
 | Emily Roberts | 604735 |
 | Cormac Range | 604054 |
 | Lohan Pelser | 603888 |
@@ -11,11 +12,11 @@
 The Baobab Ridge Wildlife Rehabilitation Records System is a C# Windows Form application developed for the fictional Baobab Ridge Wildlife Centre. The system stores animal records in text files, automatically classifies each animal based on its recovery score, and allows users to manage rehabilitation records. 
 
 ## How to run and build the program
-1. Clone or download the GitHub repository.
+1. Clone or download the GitHub repository. 
 2. Open the solution (`.sln`) in Visual Studio. 
 3. Build the solution (**Ctrl + Shift + B**)
 4. Run the application (**F5** or click start)
-5. The application will automatically create `animals.txt` if it does not already exist.
+
 
 ## Features 
 - Add a new animal 
